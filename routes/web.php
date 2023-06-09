@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/funcionarios', [FuncionarioController::class, 'index'])->name('funcionario.index');
-    Route::get('/funcionarios', [FuncionarioController::class, 'create'])->name('funcionario.create');
+    Route::get('/funcionarios/cadastro', [FuncionarioController::class, 'create'])->name('funcionario.create');
     Route::get('/funcionarios/{id}', [FuncionarioController::class, 'show'])->name('funcionario.show');
     Route::post('/funcionarios', [FuncionarioController::class, 'store'])->name('funcionario.store');
     Route::put('/funcionarios', [FuncionarioController::class, 'update'])->name('funcionario.update');
