@@ -17,6 +17,9 @@ return new class extends Migration
             $table->enum('status', ['a', 'v', 'd']);
             $table->string('section');
             $table->string('function');
+
+            $table->foreignId('user_id')->constrained();
+            
             $table->timestamps();
         });
     }

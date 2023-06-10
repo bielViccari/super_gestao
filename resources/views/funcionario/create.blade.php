@@ -15,7 +15,8 @@
                         </header>
                     
                     
-                        <form class="mt-6 space-y-6">
+                        <form method="POST" action="{{route('funcionario.store')}}" class="mt-6 space-y-6">
+                            @csrf
                             <div>
                                 <x-input-label for="name" :value="__('Nome')" />
                                 <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" />
@@ -47,5 +48,8 @@
                     </section>
                 </div>
             </div>
+        </div>
+        
+        </div>    
     </div>
 </x-app-layout>

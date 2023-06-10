@@ -6,118 +6,55 @@
                 <div class="p-6 text-gray-900">
                    <div class="flex flex-row fustify-center items-center pb-3">
                        <p class="text-dark-1000 font-bold w-3/4">Tabela de funcionários</p>
-                      <a class="flex justify-center items-center w-1/4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" href="{{route('funcionario.create')}}">{{ __('Novo funcionário') }}</a>
+                      <a class="flex justify-center items-center w-1/4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" href="{{route('funcionario.create')}}">{{ __('Adicionar') }}</a>
                    </div>
 <hr class="pb-3">
                     <!--Table for list employees-->
                     <ul role="list" class="divide-y divide-gray-100">
-                        <li class="flex justify-between gap-x-6 py-5 hover:cursor-pointer">
-                          <div class="flex gap-x-4">
-                            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
-                            <div class="min-w-0 flex-auto">
-                              <p class="text-sm font-semibold leading-6 text-gray-900">Leslie Alexander</p>
-                              <p class="mt-1 truncate text-xs leading-5 text-gray-500">Administrativo</p>
-                            </div>
+                    @foreach ($funcionarios as $funcionario)
+                      <li class="flex justify-between gap-x-6 py-5 hover:cursor-pointer">
+                        <div class="flex gap-x-4">
+                          <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
+                          <div class="min-w-0 flex-auto">
+                            <p class="text-sm font-semibold leading-6 text-gray-900"><a href="{{route('funcionario.show',$funcionario->id)}}">{{$funcionario->name}}</a></p>
+                            <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{$funcionario->section}}</p>
                           </div>
-                          <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm leading-6 text-gray-900">Co-Founder / CEO</p>
+                        </div>
+                        <div class="hidden sm:flex sm:flex-col sm:items-end">
+                          <p class="text-sm leading-6 text-gray-900">{{$funcionario->function}}</p>
+                          <div class="mt-1 flex items-center gap-x-1.5">
+                            <!--switch to verify and show what status is selected-->
+                            @switch($funcionario->status)
+                            @case('a')
                             <div class="mt-1 flex items-center gap-x-1.5">
-                                <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                                  <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                                </div>
-                                <p class="text-xs leading-5 text-gray-500">ativo</p>
+                            <div class="flex-none rounded-full bg-emerald-500/20 p-1">
+                              <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+                            </div>
+                           <p class="text-xs leading-5 text-gray-500">ativo</p>
+                          </div>
+                                @break
+                            @case('v')
+                            <div class="mt-1 flex items-center gap-x-1.5">
+                              <div class="flex-none rounded-full bg-amber-500/20 p-1">
+                                <div class="h-1.5 w-1.5 rounded-full bg-amber-500"></div>
                               </div>
-                          </div>
-                        </li>
-                        <li class="flex justify-between gap-x-6 py-5 hover:cursor-pointer">
-                          <div class="flex gap-x-4">
-                            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
-                            <div class="min-w-0 flex-auto">
-                              <p class="text-sm font-semibold leading-6 text-gray-900">Michael Foster</p>
-                              <p class="mt-1 truncate text-xs leading-5 text-gray-500">Administrativo</p>
-                            </div>
-                          </div>
-                          <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm leading-6 text-gray-900">Gerente de operações</p>
+                          <p class="mt-1 text-xs leading-5 text-gray-500">Férias</p>
+                        </div>
+                                @break
+                            @case('d')
                             <div class="mt-1 flex items-center gap-x-1.5">
-                                <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                                  <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                                </div>
-                                <p class="text-xs leading-5 text-gray-500">ativo</p>
+                              <div class="flex-none rounded-full bg-red-500/20 p-1">
+                                <div class="h-1.5 w-1.5 rounded-full bg-red-500"></div>
                               </div>
+                             <p class="mt-1 text-xs leading-5 text-gray-500">Desativado</p>
                           </div>
-                        </li>
-                        <li class="flex justify-between gap-x-6 py-5 hover:cursor-pointer">
-                          <div class="flex gap-x-4">
-                            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
-                            <div class="min-w-0 flex-auto">
-                              <p class="text-sm font-semibold leading-6 text-gray-900">Dries Vincent</p>
-                              <p class="mt-1 truncate text-xs leading-5 text-gray-500">Marketing</p>
-                            </div>
+                              @break
+                            @default       
+                        @endswitch   
                           </div>
-                          <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm leading-6 text-gray-900">Lider da equipe de vendas</p>
-                            <div class="mt-1 flex items-center gap-x-1.5">
-                              <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                                <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                              </div>
-                              <p class="text-xs leading-5 text-gray-500">ativo</p>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="flex justify-between gap-x-6 py-5 hover:cursor-pointer">
-                          <div class="flex gap-x-4">
-                            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
-                            <div class="min-w-0 flex-auto">
-                              <p class="text-sm font-semibold leading-6 text-gray-900">Lindsay Walton</p>
-                              <p class="mt-1 truncate text-xs leading-5 text-gray-500">lindsay.walton@example.com</p>
-                            </div>
-                          </div>
-                          <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm leading-6 text-gray-900">Desenvolvedor Front-end</p>
-                            <div class="mt-1 flex items-center gap-x-1.5">
-                                <div class="flex-none rounded-full bg-amber-500/20 p-1">
-                                  <div class="h-1.5 w-1.5 rounded-full bg-amber-500"></div>
-                                </div>
-                            <p class="mt-1 text-xs leading-5 text-gray-500">Férias</p>
-                          </div>
-                        </li>
-                        <li class="flex justify-between gap-x-6 py-5 hover:cursor-pointer">
-                          <div class="flex gap-x-4">
-                            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
-                            <div class="min-w-0 flex-auto">
-                              <p class="text-sm font-semibold leading-6 text-gray-900">Courtney Henry</p>
-                              <p class="mt-1 truncate text-xs leading-5 text-gray-500">Desenvolvimento Web</p>
-                            </div>
-                          </div>
-                          <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm leading-6 text-gray-900">Designer</p>
-                            <div class="mt-1 flex items-center gap-x-1.5">
-                                <div class="flex-none rounded-full bg-red-500/20 p-1">
-                                  <div class="h-1.5 w-1.5 rounded-full bg-red-500"></div>
-                                </div>
-                               <p class="mt-1 text-xs leading-5 text-gray-500">Férias</p>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="flex justify-between gap-x-6 py-5 hover:cursor-pointer">
-                          <div class="flex gap-x-4">
-                            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
-                            <div class="min-w-0 flex-auto">
-                              <p class="text-sm font-semibold leading-6 text-gray-900">Tom Cook</p>
-                              <p class="mt-1 truncate text-xs leading-5 text-gray-500">tom.cook@example.com</p>
-                            </div>
-                          </div>
-                          <div class="hidden sm:flex sm:flex-col sm:items-end">
-                            <p class="text-sm leading-6 text-gray-900">Director of Product</p>
-                            <div class="mt-1 flex items-center gap-x-1.5">
-                              <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                                <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                              </div>
-                              <p class="text-xs leading-5 text-gray-500">Online</p>
-                            </div>
-                          </div>
-                        </li>
+                        </div>
+                      </li>  
+                    @endforeach
                       </ul>
                       
 

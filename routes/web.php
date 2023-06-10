@@ -8,9 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [FuncionarioController::class, 'index'] )->middleware(['auth', 'verified'])->name('funcionario.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -19,7 +17,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/funcionarios', [FuncionarioController::class, 'index'])->name('funcionario.index');
     Route::get('/funcionarios/cadastro', [FuncionarioController::class, 'create'])->name('funcionario.create');
     Route::get('/funcionarios/{id}', [FuncionarioController::class, 'show'])->name('funcionario.show');
     Route::post('/funcionarios', [FuncionarioController::class, 'store'])->name('funcionario.store');

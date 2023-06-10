@@ -14,5 +14,11 @@ class Funcionario extends Model
         'status',
         'section',
         'function',
+        'user_id',
     ];
+
+    public function post(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
