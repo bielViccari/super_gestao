@@ -10,9 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class FuncionarioController extends Controller
 {
-    public function index(Funcionario $funcionario) {
-       $funcionarios = Funcionario::all();
-       return view('dashboard', compact('funcionarios'));
+    public function index(Funcionario $funcionario, Request $request) {
+        $perPage = 10;
+        $search = $request->search;
+        
+        if(!empty($search)) {
+            $funcionarios = Funcionario::Where('name','LIKE',"%$search%")
+            ->orWhere('section','LIKE', "%$search%")
+            ->orWhere('function','LIKE', "%$search%")
+            ->paginate($perPage);
+        }
+        else {
+            $funcionarios = Funcionario::paginate($perPage);
+        }
+       return view('dashboard')
+       ->with('funcionarios', $funcionarios)
+       ->with('search', $search);
     }
 
     public function create() {
