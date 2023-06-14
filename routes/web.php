@@ -20,8 +20,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/funcionarios/cadastro', [FuncionarioController::class, 'create'])->name('funcionario.create');
     Route::get('/funcionarios/{id}', [FuncionarioController::class, 'show'])->name('funcionario.show');
     Route::post('/funcionarios', [FuncionarioController::class, 'store'])->name('funcionario.store');
-    Route::put('/funcionarios', [FuncionarioController::class, 'update'])->name('funcionario.update');
-    Route::delete('funcionarios', [FuncionarioController::class, 'destroy'])->name('funcionario.destroy');
+    Route::get('/funcionarios/edit/{id}',[FuncionarioController::class, 'edit'])->name('funcionario.edit');
+    Route::put('/funcionarios/{id}', [FuncionarioController::class, 'update'])->name('funcionario.update');
+    Route::delete('/funcionarios/{id}', [FuncionarioController::class, 'destroy'])->name('funcionario.destroy');
 });
 
 require __DIR__.'/auth.php';

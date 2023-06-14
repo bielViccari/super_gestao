@@ -1,4 +1,5 @@
 <x-app-layout>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -43,6 +44,40 @@
                             @endswitch 
                           <p>{{$funcionario->section}}</p>
                           <p>{{$funcionario->function}}</p>
+
+                          <div class="flex flex-row pt-2">
+                            <button class="mr-2  bg-orange-500 flex align-center items-center transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-orange-700 duration-300">
+                              <a class="text-gray-100" href="{{ route('funcionario.edit', $funcionario->id) }}">Editar</a>
+                            </button>
+                          
+                            <form id="deleteForm" method="POST" action="{{route('funcionario.destroy',$funcionario->id)}}">
+                                @csrf
+                                @method('delete')
+                                <button onclick="deleteConfirm(event)" class=" ml-2 bg-red-500 flex align-center items-center transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-red-700 duration-300">
+                                  <p class="text-gray-100">Apagar</p>
+                                </button>
+                            <script type="text/javascript">
+                              window.deleteConfirm = function (event) {
+                                event.preventDefault();
+                                var form = document.getElementById('deleteForm');
+                                console.log(form)
+                                Swal.fire({
+                                  title: 'Tem certeza?',
+                                  text: "Você não será capaz de reverter isso !",
+                                  icon: 'warning',
+                                  showCancelButton: true,
+                                  confirmButtonColor: '#3085d6',
+                                  cancelButtonColor: '#d33',
+                                  confirmButtonText: 'Sim, deletar'
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                    form.submit();  
+                                }
+                              })
+                            }
+                          </script>
+                            </form>
+                          </div>
                         </div>
                     </div>
                         

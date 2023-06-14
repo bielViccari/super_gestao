@@ -16,9 +16,31 @@
                       </form>
                    </div>
 <hr class="pb-3">
+                    <!--Modal to show message-->
+                    @if ($message = Session::get('message'))
+                    <script>
+                      const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 4000,
+                        timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                      }
+                    })
+
+                      Toast.fire({
+                        icon: 'success',
+                        title: '{{ $message }}'
+                      })
+                    </script>
+                    @endif
                     <!--Table for list employees-->
                     <ul role="list" class="divide-y divide-gray-100">
-                    @foreach ($funcionarios as $funcionario)
+                      @if($funcionarios)
+                      @foreach ($funcionarios as $funcionario)
                       <li class="flex justify-between gap-x-6 py-5 hover:cursor-pointer">
                         <div class="flex gap-x-4">
                           <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
@@ -62,6 +84,7 @@
                         </div>
                       </li>  
                     @endforeach
+                    @endif
                       </ul>
 
                       {{$funcionarios->appends(['search' => isset($search) ? $search : ''])->links('vendor.pagination.tailwind')}}

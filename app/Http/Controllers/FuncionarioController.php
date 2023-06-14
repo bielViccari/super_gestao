@@ -36,14 +36,14 @@ class FuncionarioController extends Controller
        
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
-
+        
         $funcionario = Funcionario::create($data);
 
-        return view('funcionario.show', compact('funcionario'));
+        return redirect()->route('funcionario.index')->with('message', 'Funcionário ADICIONADO com sucesso');
     }
     
     public function show($id) {
-        $funcionario = Funcionario::find($id);
+       $funcionario = Funcionario::find($id);
        
        if(!$funcionario)
        return redirect()->back()->withErrors($validator);
@@ -52,12 +52,34 @@ class FuncionarioController extends Controller
 
     }
 
-    public function update ($id, Funcionario $funcionario) {
+    public function edit($id, Funcionario $funcionario) {
+        $funcionario = Funcionario::find($id);
 
+        if(!$funcionario)
+        return redirect()->back()->withErrors($validator);
+
+        return view('funcionario.edit', compact('funcionario'));
+    }
+
+    public function update (Funcionario $funcionario, StoreUpdateFuncionarios $request, $id) {
+        if(!$funcionario = Funcionario::find($id)) {
+            return redirect()->back()->withErrors($validator)->withInput();  
+        } else {
+            $data = $request->all();
+            $data['user_id'] = Auth::user()->id;
+            $funcionario->update($data);
+
+            return redirect()->route('funcionario.index')->with('message', 'Funcionário ALTERADO com sucesso');
+        }
+        
     }
 
     public function destroy($id, Funcionario $funcionario) {
+        $funcionario = Funcionario::findOrFail($id);
 
+        $funcionario->delete();
+
+        return redirect()->route('funcionario.index')->with('message', 'Funcionário DELETADO com sucesso');
     }
 
 }
