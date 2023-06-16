@@ -45,6 +45,7 @@
                           <p>{{$funcionario->section}}</p>
                           <p>{{$funcionario->function}}</p>
 
+                          @if (Gate::allows('editar-funcionario', $funcionario))    
                           <div class="flex flex-row pt-2">
                             <button class="mr-2  bg-orange-500 flex align-center items-center transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-orange-700 duration-300">
                               <a class="text-gray-100" href="{{ route('funcionario.edit', $funcionario->id) }}">Editar</a>
@@ -78,6 +79,7 @@
                           </script>
                             </form>
                           </div>
+                          @endif
                         </div>
                     </div>
                         

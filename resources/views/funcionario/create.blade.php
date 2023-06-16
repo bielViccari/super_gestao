@@ -13,38 +13,56 @@
                                 {{ __("Adicione as informações correspondentes do funcionário.") }}
                             </p>
                         </header>
-                    @if ($errors->any())
-                        @foreach ($errors as $error)
-                            <ul>
-                                <li>{{ $error }}</li>
-                            </ul>
-                        @endforeach
-                    @endif
                     
                         <form method="POST" action="{{route('funcionario.store')}}" class="mt-6 space-y-6">
                             @csrf
                             <div>
                                 <x-input-label for="name" :value="__('Nome')" />
+                                @if($errors->has('name'))
+                                <input id="name" name="name" type="text" class="mt-1 block w-full border-red-500/50 text-gray-700 focus:border-gray-800 focus:ring-gray-800 rounded-md shadow-sm" />
+                                {{ $errors->first('name') }}
+                                @else
                                 <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" />
+                                @endif
                             </div>
                     
                             <div>
                                 <x-input-label for="section" :value="__('Setor')" />
+                                @if($errors->has('section'))
+                                <input id="section" name="section" type="text" class="mt-1 block w-full border-red-500/50 text-gray-700 focus:border-gray-800 focus:ring-gray-800 rounded-md shadow-sm" />
+                                {{ $errors->first('section') }}
+                                @else
                                 <x-text-input id="section" name="section" type="text" class="mt-1 block w-full"/>
+                                @endif
                             </div>
 
                             <div>
                                 <x-input-label for="function" :value="__('Função')" />
+                                @if($errors->has('function'))
+                                <input id="function" name="function" type="text" class="mt-1 block w-full border-red-500/50 text-gray-700 focus:border-gray-800 focus:ring-gray-800 rounded-md shadow-sm" />
+                                {{ $errors->first('function') }}
+                                @else
                                 <x-text-input id="function" name="function" type="text" class="mt-1 block w-full"/>
+                                @endif
                             </div>
 
                             <div>
-                                <select class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="status" id="status">
-                                    <option hidden>Status</option>
-                                    <option value="a">Ativo</option>
-                                    <option value="v">Férias</option>
-                                    <option value="d">Desativado</option>
-                                </select>
+                                @if ($errors->has('status'))
+                                    <select class="'border-red-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm" name="status" id="status">
+                                        <option hidden>Status</option>
+                                        <option value="a">Ativo</option>
+                                        <option value="v">Férias</option>
+                                        <option value="d">Desativado</option>
+                                    </select>
+                                    {{ $errors->first('status') }}
+                                @else
+                                    <select class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="status" id="status">
+                                        <option hidden>Status</option>
+                                        <option value="a">Ativo</option>
+                                        <option value="v">Férias</option>
+                                        <option value="d">Desativado</option>
+                                    </select>
+                                @endif
                             </div>
                     
                             <div class="flex items-center gap-4">
