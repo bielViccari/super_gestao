@@ -37,6 +37,27 @@
                       })
                     </script>
                     @endif
+
+                    @if ($message = Session::get('error'))
+                    <script>
+                      const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top',
+                        showConfirmButton: false,
+                        timer: 4000,
+                        timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                      }
+                    })
+
+                      Toast.fire({
+                        icon: 'error',
+                        title: '{{ $message }}'
+                      })
+                    </script>
+                    @endif
                     <!--Table for list employees-->
                     <ul role="list" class="divide-y divide-gray-100">
                       @if($funcionarios)

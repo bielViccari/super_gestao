@@ -65,7 +65,7 @@ class FuncionarioController extends Controller
        $funcionario = Funcionario::find($id);
        
        if(!$funcionario)
-       return redirect()->back()->withErrors($validator);
+       return redirect()->back();
       
        return view('funcionario.show', compact('funcionario'));
 

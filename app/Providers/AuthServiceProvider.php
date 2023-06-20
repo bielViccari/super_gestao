@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
         //
         Gate::define('editar-funcionario', function ($user, $funcionario) {
             // Lógica de autorização para verificar se o usuário $user pode editar o post $post
-            return $user->id === $funcionario->user_id;
+            return   $user->admin === 1;
         });
     }
 }

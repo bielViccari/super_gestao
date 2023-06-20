@@ -49,7 +49,6 @@
                             <div>
                                 @if ($errors->has('status'))
                                     <select class="'border-red-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm" name="status" id="status">
-                                        <option hidden>Status</option>
                                         <option value="a">Ativo</option>
                                         <option value="v">Férias</option>
                                         <option value="d">Desativado</option>
@@ -57,7 +56,6 @@
                                     {{ $errors->first('status') }}
                                 @else
                                     <select class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="status" id="status">
-                                        <option hidden>Status</option>
                                         <option value="a">Ativo</option>
                                         <option value="v">Férias</option>
                                         <option value="d">Desativado</option>

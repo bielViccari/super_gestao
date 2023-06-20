@@ -1,6 +1,25 @@
 <x-app-layout>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @if ($message = Session::get('error'))
+  <script>
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 4000,
+      timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
+    Toast.fire({
+      icon: 'error',
+      title: '{{ $message }}'
+    })
+  </script>
+  @endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!--image-->
