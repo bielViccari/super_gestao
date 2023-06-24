@@ -19,6 +19,12 @@
                     <x-nav-link :href="route('funcionario.create')" :active="request()->routeIs('funcionario.create')" >
                         {{ __('cadastrar funcionário') }}
                     </x-nav-link>
+
+                    @if (Auth::user()->admin === 1)    
+                        <x-nav-link :href="route('painel.index')" :active="request()->routeIs('painel.index')" >
+                            {{ __('Painel de controle') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -78,6 +84,12 @@
             <x-responsive-nav-link :href="route('funcionario.create')" :active="request()->routeIs('funcionario.create')">
                 {{ __('Cadastrar Funcionários') }}
             </x-responsive-nav-link>
+
+            @if (Auth::user()->admin === 1)    
+            <x-responsive-nav-link :href="route('painel.index')" :active="request()->routeIs('painel.index')">
+                {{ __('Painel de controle') }}
+            </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
