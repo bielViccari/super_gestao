@@ -32,7 +32,7 @@
                     <div class="py-12">
                         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-gray-200/50 overflow-hidden shadow-sm sm:rounded-lg p-4 flex flex-col justify-center items-center">
-                            <h1 class="font-black text-2xl">Informações sobre o funcionário</h1>
+                            <h1 class="font-black text-2xl">INFORMAÇÕES SOBRE O FUNCIONÁRIO</h1>
                             <p class="font-black text-lg">{{$funcionario->name}}</p>
                         @switch($funcionario->status)
                                 @case('a')
@@ -66,14 +66,14 @@
 
                           @if (Gate::allows('editar-funcionario', $funcionario))    
                           <div class="flex flex-row pt-2">
-                            <button class="mr-2  bg-orange-500 flex align-center items-center transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-orange-700 duration-300">
-                              <a class="text-gray-100" href="{{ route('funcionario.edit', $funcionario->id) }}">Editar</a>
-                            </button>
+                            <div class="flex items-center gap-4 mr-2">
+                                <button class="inline-flex items-center px-4 py-2 bg-amber-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-amber-700 focus:bg-amber-600 active:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition ease-in-out duration-150"><a href="{{ route('funcionario.edit',$funcionario->id) }}">Editar</a></button>
+                            </div>
                           
                             <form id="deleteForm" method="POST" action="{{route('funcionario.destroy',$funcionario->id)}}">
                                 @csrf
                                 @method('delete')
-                                <button onclick="deleteConfirm(event)" class=" ml-2 bg-red-500 flex align-center items-center transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-red-700 duration-300">
+                                <button onclick="deleteConfirm(event)" class="inline-flex items-center px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                   <p class="text-gray-100">Apagar</p>
                                 </button>
                             <script type="text/javascript">

@@ -63,34 +63,36 @@
                       @if ($user->id === 1 && $user->admin === 1 || Auth::user()->id === $user->id)
                       <!--Admin Master, it can't be editted -->
                       <li class="flex justify-between gap-x-6 py-5">
-                        <div class="flex gap-x-4">
-                          <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
-                          <div class="min-w-0 flex-auto">
-                            <p class="text-sm font-semibold leading-6 text-gray-900">{{$user->name}}</p>
-                            <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{$user->email}}</p>
+                          <div class="flex gap-x-4">
+                            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
+                            <div class="min-w-0 flex-auto">
+                              <p class="text-sm font-semibold leading-6 text-gray-900">{{$user->name}}</p>
+                              <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{$user->email}}</p>
+                            </div>
                           </div>
-                        </div>
-                        <div class="hidden sm:flex sm:flex-col sm:items-end">
-                          <p class="text-sm leading-6 text-gray-900">{{$user->created_at}}</p>
-                          <div class="mt-1 flex items-center gap-x-1.5">                              
+                          <div class="hidden sm:flex sm:flex-col sm:items-end">
+                            <p class="text-sm leading-6 text-gray-900">{{$user->created_at}}</p>
+                            <div class="mt-1 flex items-center gap-x-1.5">                              
+                            </div>
                           </div>
-                        </div>
                       </li>  
                       @else 
                             <li class="flex justify-between gap-x-6 py-5">
+                              <a class="no-underline focus:outline-none" href="{{ route('painel.edit',$user->id) }}">
                                 <div class="flex gap-x-4">
-                                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
-                                <div class="min-w-0 flex-auto">
-                                    <p class="text-sm font-semibold leading-6 text-gray-900">{{$user->name}}</p>
-                                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{$user->email}}</p>
-                                </div>
+                                  <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('images/user.png')}}" alt="">
+                                  <div class="min-w-0 flex-auto">
+                                      <p class="text-sm font-semibold leading-6 text-gray-900">{{$user->name}}</p>
+                                      <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{$user->email}}</p>
+                                  </div>
                                 </div>
                                 <div class="hidden sm:flex sm:flex-col sm:items-end">
-                                <p class="text-sm leading-6 text-gray-900">{{$user->created_at}}</p>
-                                <p class="text-sm leading-6 text-amber-600"><a href="{{ route('painel.edit',$user->id) }}">Editar</a></p>
-                                <div class="mt-1 flex items-center gap-x-1.5"> 
+                                  <p class="text-sm leading-6 text-gray-900">{{$user->created_at}}</p>
+                                  <p class="text-sm leading-6 text-amber-600"><a href="{{ route('painel.edit',$user->id) }}">Editar</a></p>
+                                  <div class="mt-1 flex items-center gap-x-1.5"> 
+                                  </div>
                                 </div>
-                                </div>
+                              </a>
                             </li>  
                       @endif
                     @endforeach

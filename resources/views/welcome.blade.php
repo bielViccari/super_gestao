@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+            <title>{{ config('app.name', 'Laravel') }}</title>
+    
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+            <!-- Fonts -->
+            <link rel="preconnect" href="https://fonts.bunny.net">
+            <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    
+            <!-- Scripts -->
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
+        </head>
 
-        <title>Laravel</title>
+    <body background="{{ asset('images/aerial-view-business-team.jpg') }}" class="antialiased">
 
-        <!-- Fonts -->
-        
-
-        <!-- Styles -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
-    </head>
-    <body class="antialiased">
-
-        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Entrar</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Registrar-se</a>
+        <nav id="navigation" class="flex justify-start">
+            <div class="flex items-center justify-start px-2">
+                <a href="{{ route('funcionario.index') }}"><img width="40" src="{{ asset('images/managementBlue.png') }}" alt="" srcset=""></a>
+            </div>
+            <div class="max-w-6x1 mx-auto px-4 flex flex-row-reverse ">
+                <div class="flex items-center justify-end h-16">
+                    <div class="flex justify-end">
+                        @if (Route::has('login'))
+                                @auth
+                                    <a href="{{ url('/dashboard') }}" class="px-2 font-semibold text-blueButton hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-gray-500">Dashboard</a>
+                                @else
+                                    <a href="{{ route('login') }}" class="px-2 font-semibold text-blueButton hover:text-blueButton dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-gray-500">Entrar</a>
+                
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="px-2 ml-4 font-semibold text-blueButton hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-gray-500">Registrar-se</a>
+                                    @endif
+                                @endauth
                         @endif
-                    @endauth
+                    </div>
                 </div>
-            @endif
+            </div>
+        </nav>
+
+        <div class="flex flex-row items-center justify-center h-screen">
+            <div id="box-text" class="flex items-center flex-col justify-center">
+                <div class="font-black text-2xl text-white px-10 pt-5">
+                    <h1>SUPER GESTÃO</h1>
+                </div>
+                <div class="italic text-white px-10">
+                    <p>O sistema que fará você gerenciar seus funcionarios sem nenhuma dor de cabeça.</p>
+                </div>
+                <div class="flex items-center gap-4 px-10 pb-5">
+                    <button class="inline-flex items-center px-4 py-2 mt-4 bg-gray-500 border border-transparent rounded-full font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-600 focus:bg-gray-600 active:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 transition ease-in-out duration-150">{{ __('Começar') }}</button>
+                </div>
+            </div>
         </div>
 
-        <div class="container">
-            <p>Super Gestão</p>
-            <small>website para gerenciamento de funcionários</small>
-            
-        </div>
     </body>
 </html>
