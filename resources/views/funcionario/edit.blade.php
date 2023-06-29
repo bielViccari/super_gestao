@@ -19,20 +19,44 @@
                             @csrf
                             @method('PUT')
                             
-                            <div>
-                                <x-input-label for="name" :value="__('Nome')" />
-                                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" value="{{ $funcionario->name }}" />
-                            </div>
+                            @if ($errors->has('name'))    
+                                <div>
+                                    <x-input-label for="name" :value="__('Nome')" />
+                                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full border-red-500/50 text-gray-700 focus:border-red-800 focus:ring-red-800 rounded-md shadow-sm" value="{{ $funcionario->name }}" />
+                                </div>
+                                <small class="text-red-700">{{ $errors->first('name') }}</small>
+                            @else
+                                <div>
+                                    <x-input-label for="name" :value="__('Nome')" />
+                                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" value="{{ $funcionario->name }}" />
+                                </div>
+                            @endif
                     
-                            <div>
-                                <x-input-label for="section" :value="__('Setor')" />
-                                <x-text-input id="section" name="section" type="text" class="mt-1 block w-full" value="{{ $funcionario->section }}" />
-                            </div>
-
-                            <div>
-                                <x-input-label for="function" :value="__('Função')" />
-                                <x-text-input id="function" name="function" type="text" class="mt-1 block w-full" value="{{ $funcionario->function }}" />
-                            </div>
+                            @if ($errors->has('section'))
+                                <div>
+                                    <x-input-label for="section" :value="__('Setor')" />
+                                    <x-text-input id="section" name="section" type="text" class="mt-1 block w-full border-red-500/50 text-gray-700 focus:border-red-800 focus:ring-red-800 rounded-md shadow-sm" value="{{ $funcionario->section }}" />
+                                </div>
+                                <small class="text-red-700">{{ $errors->first('section') }}</small>
+                            @else
+                                <div>
+                                    <x-input-label for="section" :value="__('Setor')" />
+                                    <x-text-input id="section" name="section" type="text" class="mt-1 block w-full" value="{{ $funcionario->section }}" />
+                                </div>
+                            @endif
+                            
+                            @if ($errors->has('function'))
+                                <div>
+                                    <x-input-label for="function" :value="__('Função')" />
+                                    <x-text-input id="function" name="function" type="text" class="mt-1 block w-full border-red-500/50 text-gray-700 focus:border-red-800 focus:ring-red-800 rounded-md shadow-sm" value="{{ $funcionario->function }}" />
+                                </div>
+                                <small class="text-red-700">{{ $errors->first('function') }}</small>
+                            @else
+                                <div>
+                                    <x-input-label for="function" :value="__('Função')" />
+                                    <x-text-input id="function" name="function" type="text" class="mt-1 block w-full" value="{{ $funcionario->function }}" />
+                                </div>
+                            @endif
 
                             <div>
                                 <select class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" name="status" id="status">

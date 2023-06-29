@@ -86,8 +86,8 @@
                                       <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{$user->email}}</p>
                                   </div>
                                 </div>
-                                <div class="hidden sm:flex sm:flex-col sm:items-end">
-                                  <p class="text-sm leading-6 text-gray-900">{{$user->created_at}}</p>
+                                <div class=" sm:flex sm:flex-col sm:items-end">
+                                  <p class=" text-sm leading-6 text-gray-900">{{$user->created_at}}</p>
                                   <p class="text-sm leading-6 text-amber-600"><a href="{{ route('painel.edit',$user->id) }}">Editar</a></p>
                                   <div class="mt-1 flex items-center gap-x-1.5"> 
                                   </div>

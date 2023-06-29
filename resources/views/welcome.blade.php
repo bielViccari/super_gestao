@@ -5,8 +5,10 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="csrf-token" content="{{ csrf_token() }}">
     
-            <title>{{ config('app.name', 'Laravel') }}</title>
+            <title>Super Gestão</title>
     
+            <link rel="shortcut icon" href="{{ asset('images/management.png') }}" type="image/x-icon">
+
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
             <!-- Fonts -->
@@ -21,7 +23,7 @@
 
         <nav id="navigation" class="flex justify-start">
             <div class="flex items-center justify-start px-2">
-                <a href="{{ route('funcionario.index') }}"><img width="40" src="{{ asset('images/managementBlue.png') }}" alt="" srcset=""></a>
+                <a href="{{ route('funcionario.index') }}"><img width="40" src="{{ asset('images/managementCinza.png') }}" alt="" srcset=""></a>
             </div>
             <div class="max-w-6x1 mx-auto px-4 flex flex-row-reverse ">
                 <div class="flex items-center justify-end h-16">
@@ -51,7 +53,7 @@
                     <p>O sistema que fará você gerenciar seus funcionarios sem nenhuma dor de cabeça.</p>
                 </div>
                 <div class="flex items-center gap-4 px-10 pb-5">
-                    <button class="inline-flex items-center px-4 py-2 mt-4 bg-gray-500 border border-transparent rounded-full font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-600 focus:bg-gray-600 active:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 transition ease-in-out duration-150">{{ __('Começar') }}</button>
+                    <a href="{{ route('funcionario.index') }}" class="inline-flex items-center px-4 py-2 mt-4 bg-gray-500 border border-transparent rounded-full font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-600 focus:bg-gray-600 active:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 transition ease-in-out duration-150">{{ __('Começar') }}</a>
                 </div>
             </div>
         </div>

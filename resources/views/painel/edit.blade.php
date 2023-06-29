@@ -22,8 +22,8 @@
                             <div>
                                 <x-input-label for="name" :value="__('Nome')" />
                                 @if($errors->has('name'))
-                                <input id="name" name="name" type="text" class="mt-1 block w-full border-red-500/50 text-gray-700 focus:border-gray-800 focus:ring-gray-800 rounded-md shadow-sm" />
-                                {{ $errors->first('name') }}
+                                <input id="name" name="name" type="text" class="mt-1 block w-full border-red-500/50 text-gray-700 focus:border-red-800 focus:ring-red-800 rounded-md shadow-sm" />
+                                <small class="text-red-700">{{ $errors->first('name') }}</small>
                                 @else
                                 <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" value="{{ $user->name }}"/>
                                 @endif
@@ -33,7 +33,7 @@
                                 <x-input-label for="email" :value="__('Email')" />
                                 @if($errors->has('email'))
                                 <input id="email" name="email" type="text" class="mt-1 block w-full border-red-500/50 text-gray-700 focus:border-gray-800 focus:ring-gray-800 rounded-md shadow-sm" />
-                                {{ $errors->first('email') }}
+                                <small class="text-red-700">{{ $errors->first('email') }}</small>
                                 @else
                                 <x-text-input id="email" name="email" type="text" class="mt-1 block w-full" value="{{ $user->email }}"/>
                                 @endif

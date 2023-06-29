@@ -44,7 +44,7 @@ class PainelController extends Controller
         
         $rules = [
          'name' => 'required|min:3|max:100',
-         'email' => Rule::unique('users')->ignore($id),
+         'email' => 'required', Rule::unique('users')->ignore($id),
          'admin' => 'required',
      ];
  

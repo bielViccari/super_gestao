@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('pagina.inicial');
 
 //rota para o usuario acessar seu perfil
 Route::middleware('auth')->group(function () {
